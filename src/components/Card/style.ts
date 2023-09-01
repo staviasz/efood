@@ -1,20 +1,17 @@
 import styled from 'styled-components';
 import { colors } from '../../styles/variaveis';
 
-export const Card = styled.div`
-  border: 1px solid ${colors.pink};
+export const CardRestaurant = styled.div`
   max-width: 472px;
   color: ${colors.pink};
   position: relative;
 
-  p {
-    font-size: 14px;
-    line-height: 22px;
-    margin-bottom: 16px;
-  }
-
-  > div {
+  .content {
+    background-color: ${colors.white};
+    border: 1px solid ${colors.pink};
+    border-top: none;
     padding: 8px;
+    margin-top: -5px;
   }
 `;
 
@@ -47,4 +44,26 @@ export const Infos = styled.div`
   position: absolute;
   top: 16px;
   right: 8px;
+`;
+
+export const Paragraph = styled.p`
+  font-size: 14px;
+  line-height: 22px;
+  margin-bottom: 16px;
+`;
+
+export const CardMenu = styled.div`
+  padding: 8px;
+  background-color: ${colors.pink};
+  color: ${colors.beige};
+`;
+
+export const Button = styled.button`
+  width: 100%;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  color: ${colors.pink};
+  background-color: ${colors.beige};
 `;
