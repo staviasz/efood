@@ -1,4 +1,5 @@
 import sushi from '../../assets/images/plates/sushi.jpg';
+import banner from '../../assets/images/restaurants/japones.png';
 import BannerProfile from '../../components/Banner';
 import RestaurantList from '../../components/Restaurants';
 import Restaurant from '../../models/Data';
@@ -50,7 +51,7 @@ const plates: Omit<Restaurant, 'infos' | 'note'>[] = [
 
 const ProfileJapan = () => (
   <>
-    <BannerProfile />
+    <BannerProfile category="Japonês" image={banner} name="Hioki Sushi" />
     <RestaurantList data={plates} grid={3} typeCardList="menu" />
   </>
 );

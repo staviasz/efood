@@ -1,3 +1,4 @@
+import banner from '../../assets/images/imagem_de_fundo.png';
 import pizza from '../../assets/images/plates/pizza.png';
 import BannerProfile from '../../components/Banner';
 import RestaurantList from '../../components/Restaurants';
@@ -50,7 +51,11 @@ const plates: Omit<Restaurant, 'infos' | 'note'>[] = [
 
 const ProfileItalian = () => (
   <>
-    <BannerProfile />
+    <BannerProfile
+      image={banner}
+      category="Italiana"
+      name="La Dolce Vita Trattoria"
+    />
     <RestaurantList data={plates} grid={3} typeCardList="menu" />
   </>
 );

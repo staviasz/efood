@@ -1,10 +1,16 @@
 import * as S from './style';
 
-const BannerProfile = () => (
-  <S.Container>
+type Props = {
+  category: string;
+  image: string;
+  name: string;
+};
+
+const BannerProfile = ({ category, image, name }: Props) => (
+  <S.Container backgroundImage={image}>
     <div className="container">
-      <span>Italiana</span>
-      <h2>La Dolce Vita Trattoria</h2>
+      <span>{category}</span>
+      <h2>{name}</h2>
     </div>
   </S.Container>
 );
