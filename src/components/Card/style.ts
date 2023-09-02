@@ -17,6 +17,7 @@ export const CardRestaurant = styled.div`
 
 export const Image = styled.img`
   width: 100%;
+  height: 217px;
 `;
 
 export const ContainerTitle = styled.div`
@@ -66,4 +67,5 @@ export const Button = styled.button`
   border: none;
   color: ${colors.pink};
   background-color: ${colors.beige};
+  cursor: pointer;
 `;

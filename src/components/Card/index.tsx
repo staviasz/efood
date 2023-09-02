@@ -1,54 +1,59 @@
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import estrela from '../../assets/images/estrela.png';
-import pizza from '../../assets/images/pizza.png';
-import suchi from '../../assets/images/suchi.png';
+import Restaurant from '../../models/Data';
+import { addToCart } from '../../store/reducer/carrinho';
 import Tag from '../Tag';
 import * as S from './style';
 
 type Props = {
   typeCard: 'restaurant' | 'menu';
+  data: Restaurant;
 };
 
-const Card = ({ typeCard }: Props) => {
+const Card = ({
+  typeCard,
+  data: { id, name, descricao, image, infos, note },
+}: Props) => {
+  const dispatch = useDispatch();
+
+  const slug = (name = '') => {
+    return name.replace(/\s+/g, '-').toLowerCase();
+  };
+
   if (typeCard === 'restaurant') {
     return (
       <S.CardRestaurant>
-        <S.Image src={suchi} alt="suchi" />
+        <S.Image src={image} alt="suchi" />
         <S.Infos>
-          <Tag>Destaque</Tag>
-          <Tag>Japonesa</Tag>
+          {infos?.map((tag) => <Tag key={id.toString() + tag}>{tag}</Tag>)}
         </S.Infos>
         <div className="content">
           <S.ContainerTitle>
-            <h2>Suchi</h2>
+            <h2>{name}</h2>
             <span>
-              4.9 <img src={estrela} alt="estrela" />
+              {note} <img src={estrela} alt="estrela" />
             </span>
           </S.ContainerTitle>
-          <S.Paragraph>
-            Peça já o melhor da culinária japonesa no conforto da sua casa!
-            Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis.
-            Entrega rápida, embalagens cuidadosas e qualidade
-            garantida.Experimente o Japão sem sair do lar com nosso delivery!
-          </S.Paragraph>
-
-          <Tag>Siba mais</Tag>
+          <S.Paragraph>{descricao}</S.Paragraph>
+          <Link to={`/${slug(name)}`}>
+            <Tag>Siba mais</Tag>
+          </Link>
         </div>
       </S.CardRestaurant>
     );
   } else {
     return (
       <S.CardMenu>
-        <S.Image src={pizza} alt="suchi" />
+        <S.Image src={image} alt="suchi" />
         <div className="content">
           <S.ContainerTitle>
-            <h2>Pizza Marguerita</h2>
+            <h2>{name}</h2>
           </S.ContainerTitle>
-          <S.Paragraph>
-            A clássica Marguerita: molho de tomate suculento, mussarela
-            derretida, manjericão fresco e um toque de azeite. Sabor e
-            simplicidade!
-          </S.Paragraph>
-          <S.Button>Adicionar ao carrinho</S.Button>
+          <S.Paragraph>{descricao}</S.Paragraph>
+          <S.Button onClick={() => dispatch(addToCart())}>
+            Adicionar ao carrinho
+          </S.Button>
         </div>
       </S.CardMenu>
     );
