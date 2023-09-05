@@ -1,8 +1,8 @@
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import estrela from '../../assets/images/estrela.png';
 import Restaurant from '../../models/Data';
-import { addToCart } from '../../store/reducer/carrinho';
+import Modal from '../Modal';
 import Tag from '../Tag';
 import * as S from './style';
 
@@ -15,7 +15,11 @@ const Card = ({
   typeCard,
   data: { id, name, descricao, image, infos, note },
 }: Props) => {
-  const dispatch = useDispatch();
+  const [visible, setVisible] = useState(false);
+
+  const modalVisible = () => {
+    setVisible((v) => !v);
+  };
 
   const slug = (name = '') => {
     return name.replace(/\s+/g, '-').toLowerCase();
@@ -45,15 +49,14 @@ const Card = ({
   } else {
     return (
       <S.CardMenu>
+        <Modal visible={visible} onClick={modalVisible} />
         <S.Image src={image} alt="suchi" />
         <div className="content">
           <S.ContainerTitle>
             <h2>{name}</h2>
           </S.ContainerTitle>
           <S.Paragraph>{descricao}</S.Paragraph>
-          <S.Button onClick={() => dispatch(addToCart())}>
-            Adicionar ao carrinho
-          </S.Button>
+          <S.Button onClick={modalVisible}>Mais detalhes</S.Button>
         </div>
       </S.CardMenu>
     );
