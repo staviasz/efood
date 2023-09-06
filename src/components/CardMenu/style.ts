@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { colors } from '../../styles/variaveis';
+import { ButtonStyle } from '../Button/style';
 
 export const Image = styled.img`
   width: 100%;
@@ -44,13 +45,6 @@ export const CardMenu = styled.div`
   }
 `;
 
-export const Button = styled.button`
-  width: 100%;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 14px;
-  border: none;
-  color: ${colors.pink};
+export const Button = styled(ButtonStyle)`
   background-color: ${colors.beige};
-  cursor: pointer;
 `;

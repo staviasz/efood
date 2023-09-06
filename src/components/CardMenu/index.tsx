@@ -18,7 +18,7 @@ const CardMenu = ({ data }: Props) => {
 
   return (
     <S.CardMenu>
-      <Modal visible={visible} onClick={modalVisible} {...data} />
+      <Modal visible={visible} onClick={modalVisible} data={data} />
       <S.Image src={cover} alt="suchi" />
       <div className="content">
         <S.ContainerTitle>

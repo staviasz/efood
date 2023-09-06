@@ -1,26 +1,18 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import close from '../../assets/images/close 1.png';
+import { Menu } from '../../mapData/mapRestaurants';
+import { add } from '../../store/reducers/cart';
 import * as S from './style';
 
 type Props = {
   visible: boolean;
   onClick: () => void;
-  cover: string;
-  name: string;
-  description: string;
-  portion: string;
-  price: number;
+  data: Menu;
 };
 
-const Modal = ({
-  visible,
-  onClick,
-  cover,
-  description,
-  name,
-  portion,
-  price,
-}: Props) => {
+const Modal = ({ visible, onClick, data }: Props) => {
+  const dispatch = useDispatch();
   const [visibleModal, setVisibleModal] = useState(visible);
 
   useEffect(() => {
@@ -29,9 +21,10 @@ const Modal = ({
 
   const handleClose = () => {
     setVisibleModal(false);
-    onClick(); // Chama a função onClose para notificar o componente pai
+    onClick();
   };
 
+  const { cover, name, description, portion, price } = data;
   return (
     <S.Container visible={visibleModal}>
       <S.ContainerModal>
@@ -40,7 +33,7 @@ const Modal = ({
           <h2>{name}</h2>
           <p>{description}</p>
           <span>Serve {portion}</span>
-          <S.Button type="button">
+          <S.Button onClick={() => dispatch(add(data))}>
             Adicionar ao carrinho - R$ {price.toFixed(2)}
           </S.Button>
         </div>

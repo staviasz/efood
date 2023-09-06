@@ -1,30 +1,21 @@
 import styled from 'styled-components';
+import {
+  ContainerContent,
+  Container as Overlay,
+} from '../../container/Overlay/style';
 import { colors } from '../../styles/variaveis';
+import { ButtonStyle } from '../Button/style';
 
-type Props = {
-  visible: boolean;
-};
-
-export const Container = styled.div<Props>`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 1;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
+export const Container = styled(Overlay)`
   justify-content: center;
   align-items: center;
-  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
 `;
 
-export const ContainerModal = styled.div`
+export const ContainerModal = styled(ContainerContent)`
+  max-width: 1024px;
   position: relative;
   width: 1024px;
   height: 344px;
-  color: ${colors.white};
-  background-color: ${colors.pink};
   padding: 16px;
   display: flex;
   gap: 16px;
@@ -47,15 +38,9 @@ export const ContainerModal = styled.div`
   }
 `;
 
-export const Button = styled.button`
-  display: block;
-  margin-top: 16px;
-  padding: 8px;
-  font-weight: bold;
-  border: none;
-  color: ${colors.pink};
+export const Button = styled(ButtonStyle)`
   background-color: ${colors.beige};
-  cursor: pointer;
+  width: 216px;
 `;
 
 export const Close = styled.img`

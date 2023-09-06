@@ -29,4 +29,8 @@ export const HeaderProfile = styled.header`
   justify-content: space-around;
   padding: 40px;
   margin-bottom: 40px;
+
+  p {
+    cursor: pointer;
+  }
 `;
