@@ -40,6 +40,11 @@ export const ContainerModal = styled.div`
     margin-top: 16px;
     margin-bottom: 24px;
   }
+
+  img:first-child {
+    width: 280px;
+    object-fit: cover;
+  }
 `;
 
 export const Button = styled.button`

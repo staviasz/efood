@@ -1,5 +1,6 @@
-import Restaurant from '../../models/Data';
-import Card from '../Card';
+import { Restaurant } from '../../mapData/mapRestaurants';
+import CardMenu from '../CardMenu';
+import CardRestaurant from '../CardRestaurant';
 import * as S from './style';
 
 type Props = {
@@ -8,12 +9,25 @@ type Props = {
   data: Restaurant[];
 };
 
-const RestaurantList = ({ grid, typeCardList, data }: Props) => (
-  <S.Container className="container" repeat={grid}>
-    {data.map((item) => (
-      <Card key={item.id} typeCard={typeCardList} data={item} />
-    ))}
-  </S.Container>
-);
+const RestaurantList = ({ grid, typeCardList, data }: Props) => {
+  if (typeCardList === 'restaurant') {
+    return (
+      <S.Container className="container" repeat={grid}>
+        {data.map((item) => (
+          <CardRestaurant key={item.id} data={item} />
+        ))}
+      </S.Container>
+    );
+  } else {
+    return (
+      <S.Container className="container" repeat={grid}>
+        {data &&
+          data.length > 0 &&
+          data[0].menu &&
+          data[0].menu.map((item) => <CardMenu key={item.id} data={item} />)}
+      </S.Container>
+    );
+  }
+};
 
 export default RestaurantList;

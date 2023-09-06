@@ -1,12 +1,9 @@
-import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
-import { RootReducer } from '../../store';
 import * as S from './style';
 
 const Header = () => {
   const { pathname } = useLocation();
-  const qtdCart = useSelector((state: RootReducer) => state.carrinho.qtd);
 
   if (pathname === '/') {
     return (
@@ -26,7 +23,7 @@ const Header = () => {
         <Link to="/">
           <S.Image src={logo} alt="efood" />
         </Link>
-        <p>{qtdCart} produto(s) no carrinho</p>
+        <p>0 produto(s) no carrinho</p>
       </S.HeaderProfile>
     );
   }

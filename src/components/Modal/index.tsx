@@ -5,9 +5,22 @@ import * as S from './style';
 type Props = {
   visible: boolean;
   onClick: () => void;
+  cover: string;
+  name: string;
+  description: string;
+  portion: string;
+  price: number;
 };
 
-const Modal = ({ visible, onClick }: Props) => {
+const Modal = ({
+  visible,
+  onClick,
+  cover,
+  description,
+  name,
+  portion,
+  price,
+}: Props) => {
   const [visibleModal, setVisibleModal] = useState(visible);
 
   useEffect(() => {
@@ -22,23 +35,14 @@ const Modal = ({ visible, onClick }: Props) => {
   return (
     <S.Container visible={visibleModal}>
       <S.ContainerModal>
-        <img src="http://placeholder.com/280" alt="" />
+        <img src={cover} alt={name} />
         <div>
-          <h2>Pizza Marguerita</h2>
-          <p>
-            A pizza Margherita é uma pizza clássica da culinária italiana,
-            reconhecida por sua simplicidade e sabor inigualável. Ela é feita
-            com uma base de massa fina e crocante, coberta com molho de tomate
-            fresco, queijo mussarela de alta qualidade, manjericão fresco e
-            azeite de oliva extra-virgem. A combinação de sabores é perfeita,
-            com o molho de tomate suculento e ligeiramente ácido, o queijo
-            derretido e cremoso e as folhas de manjericão frescas, que adicionam
-            um toque de sabor herbáceo. É uma pizza simples, mas deliciosa, que
-            agrada a todos os paladares e é uma ótima opção para qualquer
-            ocasião.
-          </p>
-          <span>Serve: de 2 a 3 pessoas</span>
-          <S.Button type="button">Adicionar ao carrinho - R$ 60,90</S.Button>
+          <h2>{name}</h2>
+          <p>{description}</p>
+          <span>Serve {portion}</span>
+          <S.Button type="button">
+            Adicionar ao carrinho - R$ {price.toFixed(2)}
+          </S.Button>
         </div>
         <S.Close src={close} alt="" onClick={handleClose} />
       </S.ContainerModal>
