@@ -20,8 +20,8 @@ export type Restaurant = {
   menu: Menu[];
 };
 
-const mapRestaurants = (data: any[]): Restaurant[] => {
-  return data.map((item) => {
+const mapRestaurants = (data: any): Restaurant[] => {
+  return data.map((item: any) => {
     const {
       id,
       titulo: name,
@@ -32,6 +32,7 @@ const mapRestaurants = (data: any[]): Restaurant[] => {
       capa: cover,
       cardapio,
     } = item;
+
     return {
       id,
       name,

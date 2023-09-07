@@ -13,9 +13,8 @@ const RestaurantList = ({ grid, typeCardList, data }: Props) => {
   if (typeCardList === 'restaurant') {
     return (
       <S.Container className="container" repeat={grid}>
-        {data.map((item) => (
-          <CardRestaurant key={item.id} data={item} />
-        ))}
+        {data &&
+          data.map((item) => <CardRestaurant key={item.id} data={item} />)}
       </S.Container>
     );
   } else {
