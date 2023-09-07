@@ -27,33 +27,44 @@ const Cart = () => {
         alt="Fechar carrinho"
         onClick={() => dispatch(openClose())}
       />
-      <ul>
-        {items.map((item) => (
-          <S.ItemCart key={item.id}>
-            <S.Cover src={item.cover} alt={item.name} />
-            <div>
-              <h2>{item.name}</h2>
-              <p>Qtd:</p>
-              <S.InputQtd>
-                <span onClick={() => dispatch(decraseQty(item.id))}> - </span>
-                <input type="text" disabled value={item.qty} />
-                <span onClick={() => incraseQty(item.id)}> + </span>
-              </S.InputQtd>
-              <p>{parseToBrl(item.price * item.qty)}</p>
-            </div>
-            <S.Lixeira
-              src={lixeira}
-              alt="Lixeira"
-              onClick={() => dispatch(remove(item.id))}
-            />
-          </S.ItemCart>
-        ))}
-      </ul>
-      <S.TotalPrice>
-        <p>Valor</p>
-        <p>{parseToBrl(totalPrice)}</p>
-      </S.TotalPrice>
-      <Button>Continuar com a entrega</Button>
+      {items.length === 0 ? (
+        <S.EmpetyCart>
+          Carrinho vazio, adicione aqui as maiores delicias culinarias
+        </S.EmpetyCart>
+      ) : (
+        <>
+          <ul>
+            {items.map((item) => (
+              <S.ItemCart key={item.id}>
+                <S.Cover src={item.cover} alt={item.name} />
+                <div>
+                  <h2>{item.name}</h2>
+                  <p>Qtd:</p>
+                  <S.InputQtd>
+                    <span onClick={() => dispatch(decraseQty(item.id))}>
+                      {' '}
+                      -{' '}
+                    </span>
+                    <input type="text" disabled value={item.qty} />
+                    <span onClick={() => incraseQty(item.id)}> + </span>
+                  </S.InputQtd>
+                  <p>{parseToBrl(item.price * item.qty)}</p>
+                </div>
+                <S.Lixeira
+                  src={lixeira}
+                  alt="Lixeira"
+                  onClick={() => dispatch(remove(item.id))}
+                />
+              </S.ItemCart>
+            ))}
+          </ul>
+          <S.TotalPrice>
+            <p>Valor</p>
+            <p>{parseToBrl(totalPrice)}</p>
+          </S.TotalPrice>
+          <Button>Continuar com a entrega</Button>
+        </>
+      )}
     </Overlay>
   );
 };

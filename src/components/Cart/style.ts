@@ -26,7 +26,8 @@ export const Lixeira = styled.img`
 `;
 
 export const Cover = styled.img`
-  max-width: 80px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
 `;
 
@@ -68,4 +69,8 @@ export const InputQtd = styled.div`
       outline: none;
     }
   }
+`;
+
+export const EmpetyCart = styled.p`
+  text-align: center;
 `;

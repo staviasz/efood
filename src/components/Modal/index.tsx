@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import close from '../../assets/images/close 1.png';
 import { Menu } from '../../mapData/mapRestaurants';
-import { add } from '../../store/reducers/cart';
+import { add, openClose } from '../../store/reducers/cart';
 import * as S from './style';
 
 type Props = {
@@ -24,6 +24,12 @@ const Modal = ({ visible, onClick, data }: Props) => {
     onClick();
   };
 
+  const addCart = () => {
+    dispatch(add(data));
+    handleClose();
+    dispatch(openClose());
+  };
+
   const { cover, name, description, portion, price } = data;
   return (
     <S.Container visible={visibleModal}>
@@ -33,7 +39,7 @@ const Modal = ({ visible, onClick, data }: Props) => {
           <h2>{name}</h2>
           <p>{description}</p>
           <span>Serve {portion}</span>
-          <S.Button onClick={() => dispatch(add(data))}>
+          <S.Button onClick={addCart}>
             Adicionar ao carrinho - R$ {price.toFixed(2)}
           </S.Button>
         </div>
