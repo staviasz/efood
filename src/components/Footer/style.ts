@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../styles/variaveis';
+import { breakPoint, colors } from '../../styles/variaveis';
 
 export const FooterContainer = styled.footer`
   background-color: ${colors.beige};
@@ -14,9 +14,13 @@ export const FooterContainer = styled.footer`
   }
 
   > p {
-    width: 480px;
+    max-width: 480px;
     margin: 80px auto 0;
     padding-bottom: 40px;
+
+    @media (max-width: ${breakPoint.desktop}) {
+      max-width: 80%;
+    }
   }
 `;
 

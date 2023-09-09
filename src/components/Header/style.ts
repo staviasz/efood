@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import background from '../../assets/images/Vector.png';
-import { colors } from '../../styles/variaveis';
+import { breakPoint, colors } from '../../styles/variaveis';
 
 export const HeaderHome = styled.header`
   background-image: url(${background});
@@ -32,5 +32,11 @@ export const HeaderProfile = styled.header`
 
   p {
     cursor: pointer;
+  }
+
+  @media (max-width: ${breakPoint.tablet}) {
+    .d-none {
+      display: none;
+    }
   }
 `;

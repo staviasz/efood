@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Menu } from '../../mapData/mapRestaurants';
 
-type PropsItem = Menu & {
+export type PropsItem = Menu & {
   qty: number;
 };
 

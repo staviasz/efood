@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { breakPoint } from './variaveis';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -13,6 +14,10 @@ const GlobalStyle = createGlobalStyle`
     max-width: 1024px;
     margin: 0 auto;
     background-color: #fff8f2;
+
+    @media (max-width: ${breakPoint.desktop}) {
+      max-width: 80%;
+    }
   }
 `;
 

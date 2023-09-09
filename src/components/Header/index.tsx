@@ -1,10 +1,11 @@
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import { RootReducer } from '../../store';
 import { openClose } from '../../store/reducers/cart';
 import * as S from './style';
-
 const Header = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
@@ -25,12 +26,12 @@ const Header = () => {
   } else {
     return (
       <S.HeaderProfile>
-        <p>Restaurante</p>
+        <p className="d-none">Restaurante</p>
         <Link to="/">
           <S.Image src={logo} alt="efood" />
         </Link>
         <p onClick={() => dispatch(openClose())}>
-          {totalCart} produto(s) no carrinho
+          {totalCart} produto(s) <FontAwesomeIcon icon={faCartShopping} />
         </p>
       </S.HeaderProfile>
     );

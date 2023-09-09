@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../styles/variaveis';
+import { breakPoint, colors } from '../../styles/variaveis';
 import { ButtonStyle } from '../Button/style';
 
 export const Image = styled.img`
@@ -42,6 +42,9 @@ export const CardMenu = styled.div`
 
   .content {
     min-height: 230px;
+  }
+  @media (max-width: ${breakPoint.tablet}) {
+    margin-bottom: 32px;
   }
 `;
 

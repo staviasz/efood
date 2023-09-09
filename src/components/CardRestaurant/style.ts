@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../styles/variaveis';
+import { breakPoint, colors } from '../../styles/variaveis';
 
 export const CardRestaurant = styled.div`
   max-width: 472px;
@@ -19,6 +19,13 @@ export const CardRestaurant = styled.div`
       position: absolute;
       bottom: 8px;
     }
+    @media (max-width: ${breakPoint.desktop}) {
+      min-height: 300px;
+    }
+  }
+
+  @media (max-width: ${breakPoint.tablet}) {
+    margin-bottom: 32px;
   }
 `;
 

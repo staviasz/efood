@@ -3,7 +3,7 @@ import {
   ContainerContent,
   Container as Overlay,
 } from '../../container/Overlay/style';
-import { colors } from '../../styles/variaveis';
+import { breakPoint, colors } from '../../styles/variaveis';
 import { ButtonStyle } from '../Button/style';
 
 export const Container = styled(Overlay)`
@@ -35,6 +35,15 @@ export const ContainerModal = styled(ContainerContent)`
   img:first-child {
     width: 280px;
     object-fit: cover;
+  }
+
+  @media (max-width: ${breakPoint.tablet}) {
+    display: block;
+    min-height: 90vh;
+    img:first-child {
+      width: 100%;
+      margin-top: 8px;
+    }
   }
 `;
 

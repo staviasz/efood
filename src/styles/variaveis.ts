@@ -4,3 +4,8 @@ export const colors = {
   yellow: '#FFB930',
   beige: '#FFEBD9',
 };
+
+export const breakPoint = {
+  desktop: '1024px',
+  tablet: '768px',
+};

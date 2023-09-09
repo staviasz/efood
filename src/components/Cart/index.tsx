@@ -3,8 +3,15 @@ import close from '../../assets/images/close 1.png';
 import lixeira from '../../assets/images/lixeira-de-reciclagem.png';
 import Overlay from '../../container/Overlay';
 import { RootReducer } from '../../store';
-import { add, decraseQty, openClose, remove } from '../../store/reducers/cart';
+import {
+  add,
+  decraseQty,
+  openClose as openCloseCart,
+  remove,
+} from '../../store/reducers/cart';
+import { openClose as openCloseForm } from '../../store/reducers/form';
 import { parseToBrl } from '../../utils/formatPrice';
+import totalPrice from '../../utils/totalPrice';
 import Button from '../Button';
 import * as S from './style';
 
@@ -13,11 +20,13 @@ const Cart = () => {
   const visible = useSelector((state: RootReducer) => state.cart.isOpen);
   const items = useSelector((state: RootReducer) => state.cart.items);
 
-  const totalPrice = items.reduce((acc, i) => acc + i.price * i.qty, 0);
-
   const incraseQty = (id: number) => {
     const plate = items.find((i) => i.id === id);
     dispatch(add(plate!));
+  };
+  const openForm = () => {
+    dispatch(openCloseCart());
+    dispatch(openCloseForm());
   };
 
   return (
@@ -25,7 +34,7 @@ const Cart = () => {
       <S.Close
         src={close}
         alt="Fechar carrinho"
-        onClick={() => dispatch(openClose())}
+        onClick={() => dispatch(openCloseCart())}
       />
       {items.length === 0 ? (
         <S.EmpetyCart>
@@ -60,9 +69,9 @@ const Cart = () => {
           </ul>
           <S.TotalPrice>
             <p>Valor</p>
-            <p>{parseToBrl(totalPrice)}</p>
+            <p>{parseToBrl(totalPrice(items))}</p>
           </S.TotalPrice>
-          <Button>Continuar com a entrega</Button>
+          <Button onClick={openForm}>Continuar com a entrega</Button>
         </>
       )}
     </Overlay>
